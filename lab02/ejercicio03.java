@@ -1,4 +1,6 @@
 package lab02;
+import java.util.Scanner;
+
 public class ejercicio03 {
 
     public static void trianguloRecursivo1(int base) {
@@ -12,8 +14,11 @@ public class ejercicio03 {
         System.out.println();
     }
     public static void main(String[] args) {
-        System.out.println("Triángulo recursivo con base 5:");
-        trianguloRecursivo1(5);
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Ingrese la base del triangulo: ");
+        int var = sc.nextInt();
+        trianguloRecursivo1(var);
+        sc.close();
         
     }
 }
