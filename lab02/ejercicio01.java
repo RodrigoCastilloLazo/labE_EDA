@@ -1,18 +1,50 @@
 package lab02;
 
+import java.util.Scanner;
+
 public class ejercicio01 {
 
+    
     public static void main(String[] args) {
-        System.out.println(invertNumber(12345));
-    }
-    public static int invertNumber(int n) {
-        if (Integer.toString(n).length() == 1) {
-            return n;
-        }else {
-            int var = n % 10;
-            int largo = Integer.toString(n).length();
-            return (int) Math.pow(10, largo - 1) * var + invertNumber((n - var)/10);
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Ingrese el tamaño del vector (N): ");
+        int N = scanner.nextInt();
+        
+        int[] A = new int[N];
+        
+        System.out.println("Ingrese los " + N + " elementos del vector:");
+        for (int i = 0; i < N; i++) {
+            A[i] = scanner.nextInt();
         }
+        
+        System.out.print("\nVector original: [");
+        for (int i = 0; i < N; i++) {
+            System.out.print(A[i]);
+            if (i < N - 1) System.out.print(" ");
+        }
+        System.out.println("]");
+        
+        int[] invertido = invertirArray(A);
+        
+        System.out.print("Vector invertido: [");
+        for (int i = 0; i < invertido.length; i++) {
+            System.out.print(invertido[i]);
+            if (i < invertido.length - 1) System.out.print(" ");
+        }
+        System.out.println("]");       
+        scanner.close();
     }
-  
+    public static int[] invertirArray(int[] A) {
+        if (A.length <= 1) {
+            return A.clone(); 
+        }        
+        int[] invertido = new int[A.length];
+        invertido[0] = A[A.length - 1];
+        int[] subArray = new int[A.length - 1];
+        System.arraycopy(A, 0, subArray, 0, A.length - 1);
+        int[] subArrayInvertido = invertirArray(subArray);
+        System.arraycopy(subArrayInvertido, 0, invertido, 1, subArrayInvertido.length);
+        return invertido;
+    }
 }
