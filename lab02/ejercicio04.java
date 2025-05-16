@@ -10,11 +10,11 @@ public class ejercicio04 {
     private static void trianguloRecursivo2(int original, int actual) {
         if (actual < 1) return;
         trianguloRecursivo2(original, actual - 1);
-        for (int i = 0; i < original - actual; i++) {
-            System.out.print(" ");
+        for (int i = 0; i < (int)(original - actual); i++) {
+            System.out.print("  ");
         }
         for (int i = 0; i < actual; i++) {
-            System.out.print("*");
+            System.out.print("* ");
         }
         System.out.println();
     }
