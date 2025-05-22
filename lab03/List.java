@@ -192,4 +192,18 @@ public class List<T> {
         }
         return true;
     }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("[");
+        Node<T> current = root;
+        while (current != null) {
+            sb.append(current.data);
+            if (current.nextNode != null) {
+                sb.append(", ");
+            }
+            current = current.nextNode;
+        }
+        sb.append("]");
+        return sb.toString();
+    }
 }
