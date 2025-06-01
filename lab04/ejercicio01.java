@@ -36,7 +36,7 @@ public class ejercicio01<E> {
 
     public static void main(String[] args) {
         ejercicio01<Integer> list = new ejercicio01<>();
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= 11; i++) {
             list.add(i);
         }
 
