@@ -1,4 +1,7 @@
 package lab08.arbolB;
+import org.graphstream.graph.*;
+import org.graphstream.graph.implementations.*;
+
 
 import java.util.*;
 
@@ -268,4 +271,25 @@ public class BTree<E extends Comparable<E>> {
     child.count += sibling.count + 1;
     node.count--;
   }
+public void displayGraph() {
+    Graph graph = new SingleGraph("BTree");
+    graph.setAttribute("ui.stylesheet", "node{text-alignment: center;}");
+    traverseGraph(root, graph, "root");
+    graph.display();
+}
+
+void traverseGraph(BNode<E> node, Graph graph, String id) {
+    if (node == null) return;
+    String label = "";
+    for (int i = 0; i < node.count; i++) label += node.keys.get(i) + " ";
+    Node n = graph.addNode(id);
+    n.setAttribute("ui.label", label);
+    for (int i = 0; i <= node.count; i++) {
+        if (node.children.get(i) != null) {
+            String childId = id + "." + i;
+            graph.addEdge(id + "-" + childId, id, childId, true);
+            traverseGraph(node.children.get(i), graph, childId);
+        }
+    }
+}
 }
